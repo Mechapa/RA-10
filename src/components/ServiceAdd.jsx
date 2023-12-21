@@ -31,11 +31,19 @@ export default function ServiceAdd() {
     dispatch(changeService("price", ""));
   };
 
+  const handleCancel = (evt) => {
+    evt.preventDefault();
+    dispatch(changeEditStatus(""));
+    dispatch(changeService("name", ""));
+    dispatch(changeService("price", ""));
+  }
+
   return (
     <form onSubmit={handleSubmit} id="form">
       <input name="name" onChange={handleChange} value={item.name} />
       <input name="price" onChange={handleChange} value={item.price} />
       <button type="submit">Save</button>
+      {item.editId && <button onClick={handleCancel}>Cancel</button>}
     </form>
   );
 }
